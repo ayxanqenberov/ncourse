@@ -1,0 +1,28 @@
+.logoFrst {
+    font-family: "Exo 2", serif;
+    font-style: normal;
+}
+.register{
+    background-image: url('https://qsf.fs.quoracdn.net/-4-ans_frontend_assets.images.home_page_bg_desktop.png-26-4770753d59b970e1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
