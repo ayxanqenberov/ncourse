@@ -9,20 +9,16 @@ import Logo from "../Logo/Logo";
 const Header = () => {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user") || "null"),
-  );
+  const [userId, setUserId] = useState(localStorage.getItem("userId"));
 
   useEffect(() => {
     const checkUser = () => {
-      setUser(JSON.parse(localStorage.getItem("user") || "null"));
+      setUserId(localStorage.getItem("userId"));
     };
 
     window.addEventListener("storage", checkUser);
 
-    return () => {
-      window.removeEventListener("storage", checkUser);
-    };
+    return () => window.removeEventListener("storage", checkUser);
   }, []);
 
   return (
@@ -67,7 +63,7 @@ const Header = () => {
             <SlBasket className="cursor-pointer" />
           </button>
 
-          {user ? (
+          {userId ? (
             <div className="flex items-center gap-3">
               <button
                 onClick={() => navigate("/profile")}

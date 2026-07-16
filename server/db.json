@@ -1,3 +1,18 @@
 {
-  "users": []
+  "users": [
+    {
+      "name": "ayxan",
+      "username": "ayxan",
+      "email": "ayxan@gmail.com",
+      "password": "ayxan123",
+      "avatar": "",
+      "bio": "",
+      "followers": [],
+      "following": [],
+      "favoriteCourses": [],
+      "createdAt": "2026-07-16T17:07:27.175Z",
+      "id": "nwPuZgCZvD0"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

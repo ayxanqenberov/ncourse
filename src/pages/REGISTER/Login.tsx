@@ -15,38 +15,34 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-  const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRegisterData({
-      ...registerData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
-  const handleEnter = (
-    e: React.KeyboardEvent<HTMLInputElement>,
-    next: React.RefObject<HTMLInputElement | null>,
-  ) => {
-    if (e.key === "Enter") {
-      next.current?.focus();
-    }
-  };
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
-  const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginData({
-      ...loginData,
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRegisterData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
+
+  const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoginData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   const handleRegister = async () => {
     const validation = registerSchema.safeParse(registerData);
 
@@ -61,6 +57,7 @@ const Login = () => {
 
       return;
     }
+
     setErrors({
       name: "",
       email: "",
@@ -79,9 +76,24 @@ const Login = () => {
       return;
     }
 
-    await registerUser(registerData);
+    const newUser = await registerUser({
+      name: registerData.name,
+      username: registerData.name.toLowerCase(),
+      email: registerData.email,
+      password: registerData.password,
 
-    localStorage.setItem("user", JSON.stringify(registerData));
+      avatar: "",
+      bio: "",
+
+      followers: [],
+      following: [],
+
+      favoriteCourses: [],
+      basket: [],
+      createdAt: new Date().toISOString(),
+    });
+
+    localStorage.setItem("userId", newUser.id);
 
     navigate("/", {
       state: {
@@ -95,6 +107,7 @@ const Login = () => {
       password: "",
     });
   };
+
   const handleLogin = async () => {
     const users = await getUserByEmail(loginData.email);
 
@@ -120,7 +133,7 @@ const Login = () => {
       return;
     }
 
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("userId", user.id);
 
     navigate("/", {
       state: {
