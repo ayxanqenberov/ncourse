@@ -20,3 +20,11 @@ export const getUserById = async (id: string) => {
   const response = await api.get(`/users/${id}`);
   return response.data;
 };
+export const updateUserProfile = async (userId: string, data: object) => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, { 
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+};

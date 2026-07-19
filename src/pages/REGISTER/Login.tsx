@@ -186,7 +186,7 @@ const Login = () => {
                   name="name"
                   value={registerData.name}
                   onChange={handleRegisterChange}
-                  onKeyDown={(e) => handleEnter(e, emailRef)}
+                  
                   placeholder="Full Name"
                   className="w-full bg-[#1e1e1e] border border-gray-700 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
                 />
@@ -199,7 +199,7 @@ const Login = () => {
                   name="email"
                   value={registerData.email}
                   onChange={handleRegisterChange}
-                  onKeyDown={(e) => handleEnter(e, passwordRef)}
+                  
                   placeholder="Email Address"
                   className="w-full bg-[#1e1e1e] border border-gray-700 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
                 />

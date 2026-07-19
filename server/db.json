@@ -1,17 +1,69 @@
 {
   "users": [
     {
-      "name": "ayxan",
-      "username": "ayxan",
-      "email": "ayxan@gmail.com",
-      "password": "ayxan123",
+      "name": "code4future",
+      "username": "code4future",
+      "email": "code@gmail.com",
+      "password": "code123",
       "avatar": "",
       "bio": "",
       "followers": [],
       "following": [],
       "favoriteCourses": [],
-      "createdAt": "2026-07-16T17:07:27.175Z",
-      "id": "nwPuZgCZvD0"
+      "basket": [],
+      "createdAt": "2026-07-19T18:39:15.388Z",
+      "id": "tRGg1Y156AM",
+      "isProfessional": true
+    },
+    {
+      "name": "english_center",
+      "username": "english_center",
+      "email": "english@gmail.com",
+      "password": "english",
+      "avatar": "",
+      "bio": "",
+      "followers": [],
+      "following": [],
+      "favoriteCourses": [],
+      "basket": [],
+      "createdAt": "2026-07-19T19:15:52.286Z",
+      "id": "LT92eOssNzg",
+      "isProfessional": true
+    }
+  ],
+  "courses": [
+    {
+      "userId": "tRGg1Y156AM",
+      "title": "Axios",
+      "description": "axios video",
+      "videoUrl": "https://youtu.be/o7NYXvYohYk?si=3VA4SobJVW4nRrzJ",
+      "categories": [
+        "axios",
+        "frontend developer",
+        "web development"
+      ],
+      "level": "Beginner",
+      "price": 12,
+      "views": 0,
+      "likes": [],
+      "createdAt": "2026-07-19T18:40:24.337Z",
+      "id": "OePnd5w2GbY"
+    },
+    {
+      "userId": "LT92eOssNzg",
+      "title": "English Practise",
+      "description": "english practise for advance",
+      "videoUrl": "https://youtu.be/pi8-xkphAHo?si=E_l3GAEQM847yeA8",
+      "categories": [
+        "english",
+        "practise"
+      ],
+      "level": "Advanced",
+      "price": 50,
+      "views": 0,
+      "likes": [],
+      "createdAt": "2026-07-19T19:22:02.662Z",
+      "id": "yPwooDggisI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
