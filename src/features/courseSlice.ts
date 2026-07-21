@@ -112,8 +112,7 @@ const courseSlice = createSlice({
             (course) => course.id !== action.payload
           );
         }
-      );
-  },
+      );},
 });
 
 export default courseSlice.reducer;

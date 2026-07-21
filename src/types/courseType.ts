@@ -13,7 +13,7 @@ export interface Course {
 
   views: number;
   whisList: string[];
-
+  author: string;
   createdAt: string;
 }
 export interface CourseState {

@@ -29,6 +29,20 @@
       "createdAt": "2026-07-19T19:15:52.286Z",
       "id": "LT92eOssNzg",
       "isProfessional": true
+    },
+    {
+      "name": "design.academy",
+      "username": "design.academy",
+      "email": "designacademy@mail.com",
+      "password": "design",
+      "avatar": "",
+      "bio": "",
+      "followers": [],
+      "following": [],
+      "favoriteCourses": [],
+      "basket": [],
+      "createdAt": "2026-07-20T18:38:58.182Z",
+      "id": "yraKhO57ujU"
     }
   ],
   "courses": [

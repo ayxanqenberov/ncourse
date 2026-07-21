@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { CiSearch } from "react-icons/ci";
+import { useEffect, useState } from "react";
 import { SlBasket } from "react-icons/sl";
 import "../../App.css";
 import { useNavigate } from "react-router";
 import { LuCircleUser } from "react-icons/lu";
 import Logo from "../Logo/Logo";
+import Search from "../Search/Search";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -47,17 +47,7 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-
-        <div className="w-[40%] bg-[#232323] py-[1.2px] pl-4 hover:bg-[#5C5C5C] duration-200 rounded-md flex items-center">
-          <CiSearch />
-
-          <input
-            className="w-full bg-transparent pl-1 outline-none"
-            placeholder="Search for courses"
-            type="text"
-          />
-        </div>
-
+        <Search/>
         <div className="flex items-center gap-4">
           <button className="h-[25px] hover:text-blue-700 transition-colors text-xl w-[28px] flex items-center justify-center rounded-[5px]">
             <SlBasket className="cursor-pointer" />

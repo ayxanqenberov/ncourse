@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { IoArrowBack } from "react-icons/io5";
 import { PiCoinsLight } from "react-icons/pi";
 import { FiLogOut } from "react-icons/fi";
+import { IoSettingsOutline } from "react-icons/io5";
 import {
   TbBasket,
   TbBookUpload,
@@ -18,6 +17,7 @@ import { getUserById, updateUserProfile } from "../../services/authService";
 
 import { addCourse, fetchCourses } from "../../features/courseSlice";
 import { useAppDispatch, useAppSelector } from "../../app/store";
+import BackBttn from "../../Components/BackButton/BackBttn";
 
 const Profile = () => {
   const dispatch = useAppDispatch();
@@ -141,7 +141,7 @@ const Profile = () => {
     setTitle("");
     setDescription("");
     setVideoUrl("");
-    setCategory('');
+    setCategory("");
     setLevel("Beginner");
     setPrice("");
   };
@@ -152,15 +152,11 @@ const Profile = () => {
   return (
     <section className="min-h-screen bg-[#0f0f0f] text-white py-12">
       <div className="mb-8 flex justify-between items-center mx-8">
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-300 hover:text-white duration-200"
-        >
-          <IoArrowBack size={20} />
-          Back
-        </button>
-
+        <BackBttn/>
         <div className="flex items-center gap-3 flex-wrap">
+          <button onClick={()=> navigate(`#settings`)}>
+            <IoSettingsOutline className="text-2xl" />
+          </button>
           <button
             onClick={handleLogout}
             className="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg font-medium transition-all duration-200 shadow-lg shadow-red-600/20"
