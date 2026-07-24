@@ -3,13 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { PiCoinsLight } from "react-icons/pi";
 import { FiLogOut } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
-import {
-  TbBasket,
-  TbBookUpload,
-  TbChartBar,
-  TbEye,
-  TbHeart,
-} from "react-icons/tb";
+import { TbBookUpload, TbChartBar, TbEye, TbHeart } from "react-icons/tb";
 import { MdFavorite } from "react-icons/md";
 
 import type { User } from "../../types/userType";
@@ -22,7 +16,7 @@ import BackBttn from "../../Components/BackButton/BackBttn";
 const Profile = () => {
   const dispatch = useAppDispatch();
 
-  const { courses, loading } = useAppSelector((state) => state.courses);
+  const { courses } = useAppSelector((state) => state.courses);
 
   const [user, setUser] = useState<User | null>(null);
 
@@ -39,13 +33,12 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const userId = localStorage.getItem("userId");
+
   const addCategory = () => {
     const value = categoryInput.trim();
 
     if (!value) return;
-
     if (categories.includes(value)) return;
-
     if (categories.length >= 3) return;
 
     setCategories([...categories, value]);
@@ -55,6 +48,7 @@ const Profile = () => {
   const removeCategory = (category: string) => {
     setCategories(categories.filter((item) => item !== category));
   };
+
   useEffect(() => {
     if (!userId) return;
 
@@ -68,28 +62,28 @@ const Profile = () => {
     };
 
     fetchUser();
-
     dispatch(fetchCourses());
   }, [dispatch, userId]);
 
   if (!user) {
     return <h2 className="text-center text-white py-10">Loading...</h2>;
   }
-
   const myCourses = courses.filter((course) => course.userId === user.id);
-
-  const totalViews = myCourses.reduce(
-    (total, course) => total + course.views,
-    0,
+  const favoriteCoursesList = courses.filter((course) =>
+    user.favoriteCourses?.includes(course.id),
   );
 
+  const totalViews = myCourses.reduce(
+    (total, course) => total + (course.views || 0),
+    0,
+  );
   const totalLikes = myCourses.reduce(
-    (total, course) => total + course.likes.length,
+    (total, course) => total + (course.likes?.length || 0),
     0,
   );
 
   const totalRevenue = myCourses.reduce(
-    (total, course) => total + course.price,
+    (total, course) => total + (course.price || 0),
     0,
   );
 
@@ -141,20 +135,22 @@ const Profile = () => {
     setTitle("");
     setDescription("");
     setVideoUrl("");
-    setCategory("");
+    setCategories([]);
     setLevel("Beginner");
     setPrice("");
   };
+
   const handleLogout = () => {
     localStorage.removeItem("userId");
     navigate("/login");
   };
+
   return (
     <section className="min-h-screen bg-[#0f0f0f] text-white py-12">
       <div className="mb-8 flex justify-between items-center mx-8">
-        <BackBttn/>
+        <BackBttn />
         <div className="flex items-center gap-3 flex-wrap">
-          <button onClick={()=> navigate(`#settings`)}>
+          <button onClick={() => navigate(`/settings`)}>
             <IoSettingsOutline className="text-2xl" />
           </button>
           <button
@@ -226,36 +222,43 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-[#1b1b1b] rounded-xl p-6">
-            <h2 className="text-xl flex items-center gap-1 font-semibold">
-              {" "}
-              <MdFavorite className="text-red-500" /> Favorite Courses
-            </h2>
-            <p className="text-4xl font-bold mt-5">
-              {user.favoriteCourses?.length || 0}
-            </p>
-          </div>
+        <div className="bg-[#1b1b1b] rounded-xl p-6">
+          <h2 className="text-xl flex items-center gap-2 font-semibold mb-4">
+            <MdFavorite className="text-red-500" /> Favorite Courses (
+            {favoriteCoursesList.length})
+          </h2>
 
-          <div className="bg-[#1b1b1b] rounded-xl p-6">
-            <h2 className="text-xl flex items-center gap-1 font-semibold">
-              <TbBasket className="text-blue-500" />
-              Basket
-            </h2>
-            <p className="text-4xl font-bold mt-5">
-              {user.basket?.length || 0}
-            </p>
-          </div>
+          {favoriteCoursesList.length === 0 ? (
+            <p className="text-gray-500 text-sm">No favorite courses yet.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {favoriteCoursesList.map((course) => (
+                <div
+                  key={course.id}
+                  className="bg-[#0f0f0f] p-4 rounded-lg flex justify-between items-center"
+                >
+                  <div>
+                    <h3 className="font-semibold">{course.title}</h3>
+                    <p className="text-xs text-gray-400">{course.level}</p>
+                  </div>
+                  <span className="font-bold text-green-400">
+                    ${course.price}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         {user.isProfessional && (
           <div className="grid lg:grid-cols-3 gap-8 mt-8">
+            {/* Create Course Form */}
             <div className="bg-[#1b1b1b] rounded-2xl p-6 border border-purple-500/20">
               <h2 className="text-xl font-semibold mb-5 flex items-center gap-2">
                 <TbBookUpload className="text-green-500" />
                 Create Course
               </h2>
 
-              <form onSubmit={handleCreateCourse} className="space-y-3 ">
+              <form onSubmit={handleCreateCourse} className="space-y-3">
                 <input
                   type="text"
                   placeholder="Course Title"
@@ -286,7 +289,7 @@ const Profile = () => {
                       placeholder="Category"
                       value={categoryInput}
                       onChange={(e) => setCategoryInput(e.target.value)}
-                      className="flex-1 bg-[#0f0f0f] rounded-lg p-3 border w-[70%] border-gray-700"
+                      className="flex-1 bg-[#0f0f0f] rounded-lg p-3 border border-gray-700"
                       onKeyDown={(e) => {
                         if (e.key === "Enter") {
                           e.preventDefault();
@@ -309,14 +312,13 @@ const Profile = () => {
                     Maximum 3 categories
                   </p>
 
-                  <div className="flex flex-wrap gap-1 mt-3 mr-3">
+                  <div className="flex flex-wrap gap-1 mt-3">
                     {categories.map((category) => (
                       <div
                         key={category}
-                        className="flex items-center gap-2 bg-blue-600/20 border border-blue-600 px-3 py-1 rounded-full"
+                        className="flex items-center gap-2 bg-blue-600/20 border border-blue-600 px-3 py-1 rounded-full text-xs"
                       >
                         <span>{category}</span>
-
                         <button
                           type="button"
                           onClick={() => removeCategory(category)}
@@ -341,9 +343,9 @@ const Profile = () => {
                   }
                   className="w-full bg-[#0f0f0f] rounded-lg p-3 border border-gray-700"
                 >
-                  <option>Beginner</option>
-                  <option>Intermediate</option>
-                  <option>Advanced</option>
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
                 </select>
 
                 <input
@@ -377,7 +379,7 @@ const Profile = () => {
                 </div>
 
                 <div className="bg-[#0f0f0f] rounded-xl p-4">
-                  <p className="text-gray-400 text-sm">Likes</p>
+                  <p className="text-gray-400 text-sm">Wishlisted / Likes</p>
                   <h3 className="text-3xl font-bold">{totalLikes}</h3>
                 </div>
 
@@ -386,7 +388,6 @@ const Profile = () => {
                   <h3 className="text-3xl font-bold">${totalRevenue}</h3>
                 </div>
               </div>
-
               <div className="space-y-3 max-h-[350px] overflow-y-auto">
                 {myCourses.length === 0 ? (
                   <p className="text-center text-gray-500">
@@ -401,9 +402,16 @@ const Profile = () => {
                       <div className="flex-1">
                         <h3 className="font-semibold">{course.title}</h3>
 
-                        <p className="text-xs text-gray-500 mt-1">
-                          {course.category}
-                        </p>
+                        <div className="flex gap-2 my-1">
+                          {course.categories?.map((cat) => (
+                            <span
+                              key={cat}
+                              className="text-[10px] bg-gray-800 px-2 py-0.5 rounded text-gray-400"
+                            >
+                              {cat}
+                            </span>
+                          ))}
+                        </div>
 
                         <div className="flex gap-4 mt-3 text-sm">
                           <span className="flex items-center gap-1">
@@ -413,7 +421,7 @@ const Profile = () => {
 
                           <span className="flex items-center gap-1">
                             <TbHeart />
-                            {course.likes.length}
+                            {course.likes?.length || 0}
                           </span>
 
                           <span className="font-semibold text-green-400">

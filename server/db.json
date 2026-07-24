@@ -9,7 +9,10 @@
       "bio": "",
       "followers": [],
       "following": [],
-      "favoriteCourses": [],
+      "favoriteCourses": [
+        "OePnd5w2GbY",
+        "yPwooDggisI"
+      ],
       "basket": [],
       "createdAt": "2026-07-19T18:39:15.388Z",
       "id": "tRGg1Y156AM",
@@ -39,10 +42,14 @@
       "bio": "",
       "followers": [],
       "following": [],
-      "favoriteCourses": [],
+      "favoriteCourses": [
+        "_rPDvsWxyUs",
+        "yPwooDggisI"
+      ],
       "basket": [],
       "createdAt": "2026-07-20T18:38:58.182Z",
-      "id": "yraKhO57ujU"
+      "id": "yraKhO57ujU",
+      "isProfessional": true
     }
   ],
   "courses": [
@@ -59,7 +66,9 @@
       "level": "Beginner",
       "price": 12,
       "views": 0,
-      "likes": [],
+      "likes": [
+        "tRGg1Y156AM"
+      ],
       "createdAt": "2026-07-19T18:40:24.337Z",
       "id": "OePnd5w2GbY"
     },
@@ -75,9 +84,31 @@
       "level": "Advanced",
       "price": 50,
       "views": 0,
-      "likes": [],
+      "likes": [
+        "tRGg1Y156AM",
+        "yraKhO57ujU"
+      ],
       "createdAt": "2026-07-19T19:22:02.662Z",
       "id": "yPwooDggisI"
+    },
+    {
+      "userId": "yraKhO57ujU",
+      "title": "UI Design in 8 minutes",
+      "description": "\n✅ Key Features\n\nSimplilearn's JobAssist helps you get noticed by top hiring companies\nGet professionally certified in UI UX with a program completion certificate from IIIT Bangalore\nHands-on Practical Learning Experience via curriculum-wide assignments & projects\nIndustry-oriented problem solving via Capstone Projects on E-commerce, Fitness, and Technology industries\nHands-on learning with Designer Toolkit (Figma, Invision & Balsamiq, Sketch & Mural) for an enhanced learning experience\nMasterclasses from top faculty of IIIT Bangalore\n8X higher engagement in live online classes by Simplilearn’s expert instructors\nPortfolio creation assistance on Dribbble\nLive Masterclasses delivered by Top Design Experts from Adobe, Amazon, and Microsoft\n\n✅ Skills Covered\n\nUI and Visual Design\nDesign Thinking\nPrototyping\nInformation and Interaction Design\nUser Experience Design\nProduct Designing\nWireframing\nUsability Testing\nUser-centered design\nPersona mapping\nEmpathy mapping\nClickstream Analysis\nGestalt principles\nHeuristics Evaluation\nMicrocopy",
+      "videoUrl": "https://youtu.be/ODpB9-MCa5s?si=R2K_b93Kqxe2AxkO",
+      "categories": [
+        "ui design",
+        "design",
+        "begin"
+      ],
+      "level": "Beginner",
+      "price": 9,
+      "views": 0,
+      "likes": [
+        "yraKhO57ujU"
+      ],
+      "createdAt": "2026-07-24T11:32:11.276Z",
+      "id": "_rPDvsWxyUs"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

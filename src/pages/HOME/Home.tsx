@@ -4,10 +4,13 @@ import { useLocation } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import AdsSroll from "../../Components/Ads/AdsSroll";
 import Carousel1 from "../../Components/Carousels/Carousel1";
-import FirstSect from "./HomeSects/FirstSect";
 
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import NewCourses from "./HomeSects/NewCourses";
+import { Popular } from "./HomeSects/Popular";
+import { BestCourse } from "./HomeSects/BestCourse";
+
 
 
 const Home = () => {
@@ -37,8 +40,9 @@ const Home = () => {
 
       <Carousel1 />
 
-      <FirstSect />
-
+      <Popular />
+      <NewCourses/>
+      <BestCourse/>
 
       <Snackbar
         open={successOpen}
@@ -57,7 +61,6 @@ const Home = () => {
           Account created successfully 🎉
         </Alert>
       </Snackbar>
-
     </>
   );
 };
